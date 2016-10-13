@@ -339,8 +339,15 @@ static NSNumber *PFNumberCreateSafe(const char *typeEncoding, const void *bytes)
 }
 
 - (void)_registerSubclassesInBundle:(NSBundle *)bundle {
-    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in a bundle that hasn't been loaded!");
-
+//    PFConsistencyAssert(bundle.loaded, @"Cannot register subclasses in a bundle that hasn't been loaded!");
+    
+    if (!bundle.loaded) {
+        BOOL success = [bundle load];
+        if (!success) {
+            return;
+        }
+    }
+    
     const char *executablePath = bundle.executablePath.UTF8String;
     if (executablePath == NULL) {
         return;
