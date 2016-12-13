@@ -157,6 +157,7 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
     // into existing object in memory
     BFTask *jsonStringTask = [BFTask taskWithResult:nil];
     __block NSString *uuid = nil;
+    NSString * const jsonStringKey = @"jsonString";
 
     if (objectId == nil) {
         // This object has never been saved to Parse
@@ -180,7 +181,11 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                     if (![result next]) {
                         PFConsistencyAssertionFailure(@"Attempted to find non-existent uuid %@. Please report this issue with stack traces and logs.", uuid);
                     }
-                    return [result stringForColumnIndex:0];
+                    
+                    NSMutableDictionary *resultDictionary = [NSMutableDictionary dictionary];
+                    resultDictionary[jsonStringKey] = [result stringForColumnIndex:0];
+                    
+                    return resultDictionary;
                 }];
             }];
         }
@@ -231,12 +236,26 @@ static int const PFOfflineStoreMaximumSQLVariablesCount = 999;
                 [self.objectToUUIDMap setObject:[BFTask taskWithResult:newUUID] forKey:object];
                 [self.UUIDToObjectMap setObject:object forKey:newUUID];
             }
-            return jsonString;
+            
+            NSMutableDictionary *resultDictionary = [NSMutableDictionary dictionary];
+            resultDictionary[jsonStringKey] = jsonString;
+            jsonString = nil;
+            
+            return resultDictionary;
         }];
     }
 
     return [[jsonStringTask continueWithSuccessBlock:^id(BFTask *task) {
-        NSString *jsonString = task.result;
+        NSString *jsonString = nil;
+        
+        NSMutableDictionary *resultDictionary = task.result;
+        if (resultDictionary) {
+            jsonString = resultDictionary[jsonStringKey];
+            if (jsonString) {
+                [resultDictionary removeObjectForKey:jsonStringKey];
+            }
+        }
+        
         if (jsonString == nil) {
             // This means we tried to fetch from the database that was never actually saved
             // locally. This probably means that its parent object was saved locally and we
