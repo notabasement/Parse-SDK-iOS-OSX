@@ -17,6 +17,7 @@
 #import "PFEncoder.h"
 #import "PFInternalUtils.h"
 #import "PFRESTCloudCommand.h"
+#import "Parse.h"
 
 @implementation PFCloudCodeController
 
@@ -51,6 +52,18 @@
         PFRESTCloudCommand *command = [PFRESTCloudCommand commandForFunction:functionName
                                                               withParameters:encodedParameters
                                                                 sessionToken:sessionToken];
+        
+        NSDictionary *additionalCloudCodeFunctionRequestHeaders = [Parse currentConfiguration].additionalCloudCodeFunctionRequestHeaders;
+        if (additionalCloudCodeFunctionRequestHeaders) {
+            if (command.additionalRequestHeaders) {
+                NSMutableDictionary *additionalRequestHeaders = [command.additionalRequestHeaders mutableCopy];
+                [additionalRequestHeaders setValuesForKeysWithDictionary:additionalCloudCodeFunctionRequestHeaders];
+                command.additionalRequestHeaders = additionalRequestHeaders;
+            } else {
+                command.additionalRequestHeaders = additionalCloudCodeFunctionRequestHeaders;
+            }
+        }
+        
         return [self.dataSource.commandRunner runCommandAsync:command withOptions:PFCommandRunningOptionRetryIfFailed];
     }] continueWithSuccessBlock:^id(BFTask *task) {
         return ((PFCommandResult *)(task.result)).result[@"result"];

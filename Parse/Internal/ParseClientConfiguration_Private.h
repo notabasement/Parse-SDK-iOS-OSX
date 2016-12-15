@@ -27,6 +27,8 @@ extern NSString *const _ParseDefaultServerURLString;
 
 @property (nonatomic, assign, readwrite) NSUInteger networkRetryAttempts;
 
+@property (nullable, nonatomic, copy, readwrite) NSDictionary *additionalCloudCodeFunctionRequestHeaders;
+
 + (instancetype)emptyConfiguration;
 - (instancetype)initEmpty NS_DESIGNATED_INITIALIZER;
 

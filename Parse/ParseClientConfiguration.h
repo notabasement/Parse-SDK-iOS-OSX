@@ -88,6 +88,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) NSUInteger networkRetryAttempts;
 
+/**
+ The additional request headers for all cloud code function.
+ */
+@property (nullable, nonatomic, copy) NSDictionary *additionalCloudCodeFunctionRequestHeaders;
+
 @end
 
 /**
@@ -158,6 +163,11 @@ NS_ASSUME_NONNULL_BEGIN
  The maximum number of retry attempts to make upon a failed network request.
  */
 @property (nonatomic, assign, readonly) NSUInteger networkRetryAttempts;
+
+/**
+ The additional request headers for all cloud code function.
+ */
+@property (nullable, nonatomic, copy, readonly) NSDictionary *additionalCloudCodeFunctionRequestHeaders;
 
 ///--------------------------------------
 #pragma mark - Creating a Configuration
