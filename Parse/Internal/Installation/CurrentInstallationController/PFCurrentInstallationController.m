@@ -9,6 +9,8 @@
 
 #import "PFCurrentInstallationController.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFAsyncTaskQueue.h"
 #import "PFInstallationIdentifierStore.h"

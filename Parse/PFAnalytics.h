@@ -8,8 +8,8 @@
  */
 
 #import <Foundation/Foundation.h>
-
-#import <Bolts/BFTask.h>
+@import Bolts;
+//#import <Bolts-framework/BFTask.h>
 
 #import <Parse/PFConstants.h>
 

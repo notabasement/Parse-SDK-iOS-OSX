@@ -9,6 +9,8 @@
 
 #import "PFSessionController.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFCommandResult.h"

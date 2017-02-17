@@ -10,6 +10,8 @@
 #import "PFACL.h"
 #import "PFACLPrivate.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFACLState.h"
 #import "PFAssert.h"

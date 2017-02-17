@@ -9,9 +9,7 @@
 
 #import "PFPurchaseController.h"
 
-#import <StoreKit/StoreKit.h>
-
-#import <Bolts/BFTaskCompletionSource.h>
+@import Bolts;
 
 #import "BFTask+Private.h"
 #import "PFAssert.h"

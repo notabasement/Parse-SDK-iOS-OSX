@@ -9,6 +9,8 @@
 
 #import "PFUserController.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"

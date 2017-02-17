@@ -8,7 +8,7 @@
  */
 
 #import "PFPurchase.h"
-
+@import Bolts;
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFConstants.h"

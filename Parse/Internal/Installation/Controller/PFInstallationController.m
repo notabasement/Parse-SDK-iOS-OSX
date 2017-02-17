@@ -9,6 +9,8 @@
 
 #import "PFInstallationController.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFCurrentInstallationController.h"

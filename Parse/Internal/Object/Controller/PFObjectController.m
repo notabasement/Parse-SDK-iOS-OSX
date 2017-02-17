@@ -10,6 +10,8 @@
 #import "PFObjectController.h"
 #import "PFObjectController_Private.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFAssert.h"
 #import "PFCommandResult.h"

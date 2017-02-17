@@ -9,6 +9,8 @@
 
 #import "PFUserAuthenticationController.h"
 
+@import Bolts;
+
 #import "BFTask+Private.h"
 #import "PFMacros.h"
 #import "PFUserPrivate.h"
