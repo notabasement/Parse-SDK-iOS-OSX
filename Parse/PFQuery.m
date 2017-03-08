@@ -472,7 +472,7 @@ static void PFQueryAssertValidOrderingClauseClass(id object) {
             return;
         }
         case NSCustomSelectorPredicateOperatorType: {
-            if (predicate.customSelector != NSSelectorFromString(@"notContainedIn:")) {
+            if (predicate.customSelector != @selector(notContainedIn:)) {
                 PFConsistencyAssertionFailure(@"Predicates with custom selectors are not supported.");
             }
 

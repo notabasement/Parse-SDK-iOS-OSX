@@ -106,7 +106,7 @@
                          }
                          case NSInPredicateOperatorType: {
                              newType = NSCustomSelectorPredicateOperatorType;
-                             customSelector = NSSelectorFromString(@"notContainedIn:");
+                             customSelector = @selector(notContainedIn:);
                              break;
                          }
                          case NSLessThanPredicateOperatorType: {
