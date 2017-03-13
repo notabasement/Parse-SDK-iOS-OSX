@@ -81,7 +81,11 @@
     } else if ([object isKindOfClass:[NSArray class]]) {
         NSMutableArray *newArray = [NSMutableArray arrayWithCapacity:[object count]];
         for (id elem in object) {
-            [newArray addObject:[self encodeObject:elem]];
+            id elemObj = [self encodeObject:elem];
+            
+            if (elemObj) {
+                [newArray addObject:[self encodeObject:elem]];
+            }
         }
         return newArray;
 
