@@ -153,6 +153,7 @@
 - (BFTask<NSDictionary *> *)_getURLRequestHeadersAsyncForCommand:(PFRESTCommand *)command {
     return [BFTask taskFromExecutor:[BFExecutor defaultExecutor] withBlock:^id {
         NSMutableDictionary *headers = [NSMutableDictionary dictionary];
+        [headers addEntriesFromDictionary:[Parse currentConfiguration].additionalHTTPRequestHeaders];
         [headers addEntriesFromDictionary:command.additionalRequestHeaders];
         if (command.sessionToken) {
             headers[PFCommandHeaderNameSessionToken] = command.sessionToken;

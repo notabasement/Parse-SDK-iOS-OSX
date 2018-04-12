@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
  The additional request headers for all cloud code function.
  */
 @property (nullable, nonatomic, copy) NSDictionary *additionalCloudCodeFunctionRequestHeaders;
-
+@property (nullable, nonatomic, copy) NSDictionary *additionalHTTPRequestHeaders;
 @end
 
 /**
@@ -180,6 +180,7 @@ NS_ASSUME_NONNULL_BEGIN
  The additional request headers for all cloud code function.
  */
 @property (nullable, nonatomic, copy, readonly) NSDictionary *additionalCloudCodeFunctionRequestHeaders;
+@property (nullable, nonatomic, copy, readonly) NSDictionary *additionalHTTPRequestHeaders;
 
 ///--------------------------------------
 #pragma mark - Creating a Configuration
