@@ -107,20 +107,20 @@
     if ([self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
         [self.locationManager requestWhenInUseAuthorization];
     } else {
-        [self.locationManager requestAlwaysAuthorization];
+        [self.locationManager requestWhenInUseAuthorization];
     }
     [self.locationManager requestLocation];
 #elif TARGET_OS_TV
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager requestLocation];
 #elif TARGET_OS_IOS
-    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         dispatch_block_t block = ^{
             if (self.application.applicationState != UIApplicationStateBackground &&
                 [self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
                 [self.locationManager requestWhenInUseAuthorization];
             } else {
-                [self.locationManager requestAlwaysAuthorization];
+                [self.locationManager requestWhenInUseAuthorization];
             }
         };
         if ([NSThread currentThread].isMainThread) {
